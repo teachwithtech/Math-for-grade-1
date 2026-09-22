@@ -1,0 +1,2612 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>MATH ADVENTURE 1</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap');
+
+:root{
+  --blue:#2563eb;
+  --blue2:#60a5fa;
+  --yellow:#facc15;
+  --green:#22c55e;
+  --red:#ef4444;
+  --purple:#8b5cf6;
+  --pink:#ec4899;
+  --orange:#f97316;
+  --cyan:#06b6d4;
+  --dark:#172554;
+  --light:#eff6ff;
+  --white:#fff;
+  --shadow:0 8px 22px rgba(37,99,235,.14);
+  --radius:24px;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:"Nunito",Arial,sans-serif;
+  background:linear-gradient(135deg,#eff6ff,#fff7ed,#f0fdf4);
+  color:#172554;
+}
+
+button,input,select{font-family:inherit}
+
+button{
+  cursor:pointer;
+  border:0;
+}
+
+.hidden{display:none!important}
+
+.app{
+  min-height:100vh;
+}
+
+header{
+  background:linear-gradient(135deg,#2563eb,#7c3aed);
+  color:white;
+  padding:18px 5%;
+  position:sticky;
+  top:0;
+  z-index:20;
+  box-shadow:0 5px 18px rgba(0,0,0,.12);
+}
+
+.header-inner{
+  max-width:1100px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+}
+
+.logo{
+  font-weight:900;
+  font-size:20px;
+}
+
+.header-student{
+  background:rgba(255,255,255,.18);
+  padding:8px 14px;
+  border-radius:20px;
+  font-size:14px;
+}
+
+main{
+  max-width:1100px;
+  margin:auto;
+  padding:25px 16px 60px;
+}
+
+.card{
+  background:white;
+  border-radius:var(--radius);
+  padding:25px;
+  box-shadow:var(--shadow);
+  margin-bottom:20px;
+}
+
+.hero{
+  text-align:center;
+  padding:35px 20px;
+  background:linear-gradient(135deg,#dbeafe,#ede9fe,#fef3c7);
+}
+
+.hero-emoji{
+  font-size:70px;
+  margin-bottom:8px;
+}
+
+h1{
+  font-size:clamp(30px,6vw,52px);
+  margin:8px 0;
+  font-weight:900;
+  color:#1e3a8a;
+}
+
+h2{
+  font-size:28px;
+  margin:5px 0 10px;
+}
+
+h3{
+  margin:5px 0;
+}
+
+.subtitle{
+  font-size:18px;
+  font-weight:700;
+  color:#475569;
+}
+
+.tagline{
+  display:inline-block;
+  margin:14px 0;
+  padding:9px 18px;
+  border-radius:30px;
+  background:white;
+  color:#7c3aed;
+  font-weight:900;
+}
+
+.form{
+  max-width:500px;
+  margin:20px auto 0;
+}
+
+label{
+  display:block;
+  text-align:left;
+  font-weight:800;
+  margin:12px 0 5px;
+}
+
+input,select{
+  width:100%;
+  padding:14px 16px;
+  border:2px solid #dbeafe;
+  border-radius:16px;
+  font-size:17px;
+  outline:none;
+}
+
+input:focus,select:focus{
+  border-color:var(--blue);
+}
+
+.btn{
+  padding:13px 20px;
+  border-radius:16px;
+  font-size:16px;
+  font-weight:900;
+  transition:.2s;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+}
+
+.btn-primary{
+  background:var(--blue);
+  color:white;
+}
+
+.btn-green{
+  background:var(--green);
+  color:white;
+}
+
+.btn-purple{
+  background:var(--purple);
+  color:white;
+}
+
+.btn-orange{
+  background:var(--orange);
+  color:white;
+}
+
+.btn-red{
+  background:var(--red);
+  color:white;
+}
+
+.btn-light{
+  background:#e0e7ff;
+  color:#1e3a8a;
+}
+
+.btn-small{
+  padding:9px 14px;
+  font-size:14px;
+}
+
+.center{
+  text-align:center;
+}
+
+.actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  justify-content:center;
+  margin-top:20px;
+}
+
+.section-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin-bottom:15px;
+}
+
+.mission-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:16px;
+}
+
+.mission{
+  position:relative;
+  overflow:hidden;
+  border-radius:22px;
+  padding:20px;
+  color:white;
+  min-height:190px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  box-shadow:var(--shadow);
+}
+
+.mission:nth-child(1){background:linear-gradient(135deg,#2563eb,#38bdf8)}
+.mission:nth-child(2){background:linear-gradient(135deg,#16a34a,#4ade80)}
+.mission:nth-child(3){background:linear-gradient(135deg,#ea580c,#fb923c)}
+.mission:nth-child(4){background:linear-gradient(135deg,#7c3aed,#c084fc)}
+.mission:nth-child(5){background:linear-gradient(135deg,#0891b2,#22d3ee)}
+.mission:nth-child(6){background:linear-gradient(135deg,#db2777,#f472b6)}
+.mission:nth-child(7){background:linear-gradient(135deg,#ca8a04,#facc15)}
+.mission:nth-child(8){background:linear-gradient(135deg,#4338ca,#8b5cf6)}
+
+.mission-icon{
+  font-size:45px;
+}
+
+.mission-title{
+  font-size:21px;
+  font-weight:900;
+}
+
+.mission-desc{
+  font-size:14px;
+  opacity:.95;
+}
+
+.mission .btn{
+  background:white;
+  color:#172554;
+  align-self:flex-start;
+}
+
+.progress{
+  height:12px;
+  background:#e2e8f0;
+  border-radius:20px;
+  overflow:hidden;
+}
+
+.progress-bar{
+  height:100%;
+  background:linear-gradient(90deg,#22c55e,#2563eb);
+  transition:.4s;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+  gap:12px;
+}
+
+.stat{
+  padding:16px;
+  border-radius:18px;
+  background:#f8fafc;
+  text-align:center;
+}
+
+.stat-number{
+  font-size:28px;
+  font-weight:900;
+  color:#2563eb;
+}
+
+.stat-label{
+  font-size:13px;
+  font-weight:700;
+  color:#64748b;
+}
+
+.lesson-banner{
+  padding:25px;
+  border-radius:24px;
+  background:linear-gradient(135deg,#dbeafe,#f3e8ff);
+  margin-bottom:20px;
+}
+
+.lesson-banner .big{
+  font-size:52px;
+}
+
+.cpa-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+}
+
+.cpa{
+  padding:20px;
+  border-radius:20px;
+  text-align:center;
+}
+
+.cpa:nth-child(1){background:#dcfce7}
+.cpa:nth-child(2){background:#fef3c7}
+.cpa:nth-child(3){background:#dbeafe}
+
+.cpa-icon{
+  font-size:40px;
+}
+
+.object-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  justify-content:center;
+  margin:18px 0;
+  font-size:38px;
+}
+
+.example{
+  background:#f8fafc;
+  border:2px dashed #bfdbfe;
+  border-radius:18px;
+  padding:18px;
+  margin-top:15px;
+}
+
+.question-box{
+  text-align:center;
+}
+
+.question-number{
+  font-weight:900;
+  color:#64748b;
+}
+
+.question{
+  font-size:clamp(21px,4vw,30px);
+  font-weight:900;
+  margin:18px 0;
+}
+
+.options{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+  gap:12px;
+  max-width:700px;
+  margin:auto;
+}
+
+.option{
+  background:white;
+  border:3px solid #dbeafe;
+  border-radius:18px;
+  padding:16px;
+  font-size:19px;
+  font-weight:900;
+  color:#1e3a8a;
+}
+
+.option:hover{
+  border-color:#60a5fa;
+  background:#eff6ff;
+}
+
+.option.correct{
+  border-color:#16a34a;
+  background:#dcfce7;
+}
+
+.option.wrong{
+  border-color:#dc2626;
+  background:#fee2e2;
+}
+
+.feedback{
+  margin:18px auto;
+  max-width:750px;
+  border-radius:20px;
+  padding:18px;
+  font-weight:800;
+}
+
+.feedback.good{
+  background:#dcfce7;
+  color:#166534;
+}
+
+.feedback.bad{
+  background:#fee2e2;
+  color:#991b1b;
+}
+
+.feedback.help{
+  background:#fef3c7;
+  color:#92400e;
+}
+
+.hint{
+  margin-top:14px;
+  padding:15px;
+  background:#ede9fe;
+  border-radius:18px;
+  color:#5b21b6;
+}
+
+.level-badge{
+  display:inline-block;
+  padding:5px 10px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:900;
+}
+
+.lots{background:#dcfce7;color:#166534}
+.mots{background:#fef3c7;color:#92400e}
+.hots{background:#fee2e2;color:#991b1b}
+
+.choice-image{
+  font-size:60px;
+  margin:12px;
+}
+
+.result{
+  text-align:center;
+}
+
+.stars{
+  font-size:48px;
+  letter-spacing:4px;
+}
+
+.big-score{
+  font-size:52px;
+  font-weight:900;
+  color:#2563eb;
+}
+
+.teacher-table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:900px;
+}
+
+.teacher-table th,
+.teacher-table td{
+  border:1px solid #cbd5e1;
+  padding:9px;
+  text-align:center;
+  font-size:13px;
+}
+
+.teacher-table th{
+  background:#dbeafe;
+  font-weight:900;
+}
+
+.table-wrap{
+  overflow:auto;
+}
+
+.empty{
+  text-align:center;
+  padding:30px;
+  color:#64748b;
+}
+
+footer{
+  text-align:center;
+  padding:25px;
+  color:#64748b;
+  font-size:13px;
+}
+
+@media(max-width:700px){
+  .header-inner{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .cpa-grid{
+    grid-template-columns:1fr;
+  }
+
+  .card{
+    padding:18px;
+  }
+
+  .mission{
+    min-height:175px;
+  }
+
+  .hero-emoji{
+    font-size:55px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<header>
+  <div class="header-inner">
+    <div class="logo">🚀 MATH ADVENTURE 1</div>
+    <div id="studentHeader" class="header-student hidden"></div>
+  </div>
+</header>
+
+<main>
+
+<!-- BERANDA -->
+<section id="homeScreen">
+
+  <div class="card hero">
+    <div class="hero-emoji">🧒🔢⭐</div>
+    <h1>MATH ADVENTURE 1</h1>
+    <div class="subtitle">Petualangan Matematika Kelas 1</div>
+    <div class="tagline">Amati – Coba – Temukan – Kuasai!</div>
+
+    <p>
+      Ayo belajar matematika melalui gambar, benda, pola,
+      cerita, dan tantangan seru!
+    </p>
+
+    <div class="form">
+      <label>👧 Nama Siswa</label>
+      <input id="studentName" placeholder="Tuliskan nama..." maxlength="40">
+
+      <label>🏫 Kelas</label>
+      <select id="studentClass">
+        <option>1 A</option>
+        <option>1 B</option>
+        <option>1 C</option>
+        <option>1 D</option>
+      </select>
+
+      <div class="actions">
+        <button class="btn btn-primary" onclick="startAdventure()">
+          🚀 Mulai Petualangan
+        </button>
+
+        <button class="btn btn-light" onclick="showTeacher()">
+          👩‍🏫 Menu Guru
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🌟 Apa yang akan kamu lakukan?</h2>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-number">8</div>
+        <div class="stat-label">Misi</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">200</div>
+        <div class="stat-label">Latihan</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">80</div>
+        <div class="stat-label">Asesmen</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">🏆</div>
+        <div class="stat-label">Grand Mission</div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- PETA MISI -->
+<section id="mapScreen" class="hidden">
+
+  <div class="card">
+    <div class="section-title">
+      <div>
+        <h2>🗺️ Peta Petualangan</h2>
+        <div id="welcomeText"></div>
+      </div>
+      <button class="btn btn-light btn-small" onclick="goHome()">🏠</button>
+    </div>
+
+    <div class="progress">
+      <div id="overallProgress" class="progress-bar" style="width:0%"></div>
+    </div>
+    <p id="overallText" class="center"></p>
+  </div>
+
+  <div id="missionGrid" class="mission-grid"></div>
+
+</section>
+
+
+<!-- LESSON -->
+<section id="lessonScreen" class="hidden">
+
+  <div id="lessonContent"></div>
+
+  <div class="actions">
+    <button class="btn btn-light" onclick="showMap()">🗺️ Peta</button>
+    <button class="btn btn-primary" onclick="startPractice()">🎮 Mulai Latihan</button>
+  </div>
+
+</section>
+
+
+<!-- PRACTICE -->
+<section id="practiceScreen" class="hidden">
+
+  <div class="card question-box">
+
+    <div class="section-title">
+      <button class="btn btn-light btn-small" onclick="showMap()">🗺️</button>
+
+      <div>
+        <span id="practiceLevel" class="level-badge lots">LOTS</span>
+      </div>
+
+      <div id="practiceCounter"></div>
+    </div>
+
+    <div class="progress">
+      <div id="practiceProgress" class="progress-bar"></div>
+    </div>
+
+    <div id="practiceQuestion"></div>
+
+    <div id="practiceFeedback"></div>
+
+    <div id="practiceHint"></div>
+
+  </div>
+
+</section>
+
+
+<!-- PRACTICE RESULT -->
+<section id="practiceResultScreen" class="hidden">
+
+  <div class="card result">
+    <div class="stars" id="practiceStars"></div>
+    <h2>🎉 Latihan Selesai!</h2>
+    <div id="practiceResult"></div>
+
+    <div class="actions">
+      <button class="btn btn-primary" onclick="startPractice()">
+        🔄 Latihan Lagi
+      </button>
+
+      <button class="btn btn-purple" onclick="startAssessment()">
+        📝 Mulai Asesmen
+      </button>
+
+      <button class="btn btn-light" onclick="showMap()">
+        🗺️ Kembali ke Peta
+      </button>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- ASSESSMENT -->
+<section id="assessmentScreen" class="hidden">
+
+  <div class="card question-box">
+
+    <div class="section-title">
+      <button class="btn btn-light btn-small" onclick="showMap()">🗺️</button>
+
+      <div>
+        <strong id="assessmentTitle"></strong>
+      </div>
+
+      <div id="assessmentCounter"></div>
+    </div>
+
+    <div class="progress">
+      <div id="assessmentProgress" class="progress-bar"></div>
+    </div>
+
+    <div id="assessmentQuestion"></div>
+
+    <div id="assessmentFeedback"></div>
+
+  </div>
+
+</section>
+
+
+<!-- ASSESSMENT RESULT -->
+<section id="assessmentResultScreen" class="hidden">
+
+  <div class="card result">
+
+    <div class="stars" id="assessmentStars"></div>
+
+    <h2>🏆 Asesmen Selesai!</h2>
+
+    <div class="big-score" id="assessmentScore"></div>
+
+    <div id="assessmentDetail"></div>
+
+    <div class="actions">
+      <button class="btn btn-primary" onclick="showMap()">
+        🗺️ Kembali ke Peta
+      </button>
+
+      <button class="btn btn-orange" onclick="startAssessment()">
+        🔄 Ulangi Asesmen
+      </button>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- GRAND RESULT -->
+<section id="grandResultScreen" class="hidden">
+
+  <div class="card result">
+    <div class="stars">🏆⭐🏆</div>
+    <h2>GRAND MISSION SELESAI!</h2>
+
+    <div class="big-score" id="grandScore"></div>
+
+    <p id="grandMessage"></p>
+
+    <div class="actions">
+      <button class="btn btn-primary" onclick="showMap()">
+        🗺️ Kembali ke Peta
+      </button>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- TEACHER -->
+<section id="teacherScreen" class="hidden">
+
+  <div class="card">
+
+    <div class="section-title">
+      <div>
+        <h2>👩‍🏫 Rekap Guru</h2>
+        <p>Data tersimpan di browser perangkat ini.</p>
+      </div>
+
+      <button class="btn btn-light btn-small" onclick="goHome()">
+        🏠
+      </button>
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-green" onclick="downloadCSV()">
+        📥 Download CSV
+      </button>
+
+      <button class="btn btn-red" onclick="clearRecords()">
+        🗑️ Hapus Semua Data
+      </button>
+    </div>
+
+  </div>
+
+  <div class="card">
+    <div id="teacherTable"></div>
+  </div>
+
+</section>
+
+</main>
+
+<footer>
+  MATH ADVENTURE 1 • Petualangan Matematika Kelas 1<br>
+  Amati – Coba – Temukan – Kuasai!
+</footer>
+
+</div>
+
+
+<script>
+"use strict";
+
+/* =========================================================
+   DATA MISI
+========================================================= */
+
+const MISSIONS = [
+{
+ id:1,
+ icon:"🔢",
+ title:"Petualangan Bilangan",
+ short:"Mengenal, membaca, menulis, membandingkan, dan mengurutkan bilangan.",
+ element:"Bilangan",
+ objective:"Aku dapat mengenal bilangan dan menjelaskan hubungan antarbilangan.",
+ color:"#2563eb"
+},
+{
+ id:2,
+ icon:"➕",
+ title:"Negeri Penjumlahan",
+ short:"Menggabungkan kelompok dan memahami penjumlahan.",
+ element:"Bilangan",
+ objective:"Aku dapat menjumlahkan bilangan menggunakan benda, gambar, dan simbol.",
+ color:"#16a34a"
+},
+{
+ id:3,
+ icon:"➖",
+ title:"Negeri Pengurangan",
+ short:"Mengambil, mencari sisa, dan memahami selisih.",
+ element:"Bilangan",
+ objective:"Aku dapat melakukan pengurangan dan menjelaskan jawabanku.",
+ color:"#ea580c"
+},
+{
+ id:4,
+ icon:"🧩",
+ title:"Kota Pola",
+ short:"Mengenali aturan dan melanjutkan pola.",
+ element:"Aljabar",
+ objective:"Aku dapat menemukan aturan suatu pola.",
+ color:"#7c3aed"
+},
+{
+ id:5,
+ icon:"📏",
+ title:"Dunia Pengukuran",
+ short:"Membandingkan panjang, tinggi, berat, dan urutan waktu.",
+ element:"Pengukuran",
+ objective:"Aku dapat membandingkan dan mengurutkan hasil pengukuran.",
+ color:"#0891b2"
+},
+{
+ id:6,
+ icon:"🔷",
+ title:"Kota Bentuk",
+ short:"Mengenal, mengelompokkan, menyusun, dan membongkar bentuk.",
+ element:"Geometri",
+ objective:"Aku dapat mengenali dan menjelaskan bentuk di sekitarku.",
+ color:"#db2777"
+},
+{
+ id:7,
+ icon:"📊",
+ title:"Kota Data",
+ short:"Mengumpulkan, membaca, dan membandingkan data sederhana.",
+ element:"Analisis Data",
+ objective:"Aku dapat membaca informasi dari tabel dan gambar data.",
+ color:"#ca8a04"
+},
+{
+ id:8,
+ icon:"🏆",
+ title:"Grand Mission",
+ short:"Misi besar yang menggabungkan berbagai konsep matematika.",
+ element:"Integrasi",
+ objective:"Aku dapat menggunakan strategi matematika untuk menyelesaikan masalah.",
+ color:"#4338ca"
+}
+];
+
+
+/* =========================================================
+   BANK LATIHAN
+   25 SOAL SETIAP MISI
+   Format:
+   q, options, answer, level, indicator, explanation
+========================================================= */
+
+const PRACTICE = {
+
+1:[
+["Ada 🍎 🍎 🍎 🍎. Ada berapa apel?",["3","4","5","6"],1,"LOTS","B1","Hitung satu per satu. Ada 4 apel."],
+["Lihat: ⭐ ⭐ ⭐ ⭐ ⭐. Jumlah bintang adalah...",["4","5","6","7"],1,"LOTS","B1","Ada 5 bintang."],
+["Lambang bilangan untuk 'tiga' adalah...",["2","3","4","5"],1,"LOTS","B2","Tiga ditulis dengan angka 3."],
+["Lambang bilangan untuk 'sembilan' adalah...",["7","8","9","10"],2,"LOTS","B4","Sembilan ditulis 9."],
+["Bilangan manakah yang lebih banyak?",["3","5","2","1"],1,"LOTS","B5","5 lebih banyak daripada 3, 2, atau 1."],
+["Bilangan mana yang lebih besar?",["4","7","3","2"],1,"LOTS","B6","7 adalah yang terbesar."],
+["Urutan dari kecil ke besar: 2, 1, 3 adalah...",["1,2,3","2,1,3","3,2,1","1,3,2"],0,"MOTS","B7","Mulai dari bilangan paling kecil."],
+["Bilangan sebelum 5 adalah...",["3","4","6","7"],1,"MOTS","B8","Sebelum 5 adalah 4."],
+["Bilangan sesudah 7 adalah...",["6","7","8","9"],2,"MOTS","B8","Sesudah 7 adalah 8."],
+["Mana yang menunjukkan 6?",["⭐⭐⭐⭐","⭐⭐⭐⭐⭐","⭐⭐⭐⭐⭐⭐","⭐⭐⭐⭐⭐⭐⭐"],2,"MOTS","B2","Enam berarti ada 6 benda."],
+["Urutan yang benar adalah...",["5,3,4","3,4,5","4,5,3","5,4,3"],1,"MOTS","B7","3, 4, 5 bertambah satu-satu."],
+["Bilangan terbesar adalah...",["6","2","9","5"],2,"MOTS","B6","9 lebih besar daripada bilangan lainnya."],
+["Bilangan terkecil adalah...",["8","4","7","6"],1,"MOTS","B6","4 paling kecil."],
+["7 dapat diurai menjadi...",["3+4","2+6","1+7","5+3"],0,"MOTS","B10","3 dan 4 jika digabungkan menjadi 7."],
+["8 dapat diurai menjadi...",["2+5","3+5","4+5","6+3"],1,"MOTS","B10","3 + 5 = 8."],
+["Kartu angka 2, 4, 7. Urutan kecil ke besar...",["7,4,2","2,7,4","2,4,7","4,2,7"],2,"MOTS","B9","2 paling kecil, lalu 4, lalu 7."],
+["Ada 5 bola. Ditambah 1 bola. Sekarang...",["4","5","6","7"],2,"MOTS","B11","5 bertambah 1 menjadi 6."],
+["Mana yang lebih dekat dengan 10?",["3","5","9","2"],2,"MOTS","B11","9 hanya satu langkah dari 10."],
+["Bilangan di antara 4 dan 6 adalah...",["3","5","7","8"],1,"MOTS","B11","5 berada di antara 4 dan 6."],
+["Mana pasangan yang jumlahnya sama?",["3 dan 4","2 dan 5","1 dan 7","4 dan 5"],1,"HOTS","B11","2 dan 5 sama-sama menunjukkan jumlah 7."],
+["Aku lebih besar dari 5 dan lebih kecil dari 9. Aku adalah...",["4","6","7","9"],2,"HOTS","B11","Bilangan 6, 7, atau 8 memenuhi syarat. Pilihan yang tepat adalah 7."],
+["Ada 8 manik-manik. Dibagi sama banyak kepada 2 anak. Setiap anak mendapat...",["2","3","4","5"],2,"HOTS","B11","8 dibagi menjadi dua kelompok sama besar: 4 dan 4."],
+["Kartu 2, 5, 8. Bilangan terbesar yang dapat dibuat dengan 2 kartu adalah...",["25","52","58","85"],3,"HOTS","B9","Untuk membuat bilangan terbesar, 8 ditempatkan di depan lalu 5: 85."],
+["Rani punya 6 pensil. Budi punya 8. Siapa lebih banyak?",["Rani","Budi","Sama","Tidak tahu"],1,"HOTS","B11","8 lebih besar daripada 6, jadi Budi lebih banyak."],
+["Buat dua cara berbeda untuk mengurai 8. Manakah pasangan yang benar?",["1+7 dan 2+6","1+8 dan 2+7","3+6 dan 4+5","5+5 dan 6+3"],0,"HOTS","B10","1+7=8 dan 2+6=8. Ada dua cara berbeda."]
+],
+
+2:[
+["2 + 3 = ...",["4","5","6","7"],1,"LOTS","PJ2","Gabungkan 2 dan 3 menjadi 5."],
+["Simbol yang digunakan untuk 'ditambah' adalah...",["+","−","=","<"],0,"LOTS","PJ3","Penjumlahan menggunakan tanda +."],
+["5 + 2 = ...",["6","7","8","9"],1,"LOTS","PJ4","5 ditambah 2 sama dengan 7."],
+["4 + 3 = ...",["6","7","8","9"],1,"LOTS","PJ2","4 dan 3 jika digabungkan menjadi 7."],
+["🍎🍎 + 🍎 = ...",["2","3","4","5"],1,"MOTS","PJ5","2 apel ditambah 1 apel menjadi 3."],
+["Pada garis bilangan, mulai dari 4 lalu maju 3 langkah. Sampai di...",["6","7","8","9"],1,"MOTS","PJ6","4 maju 3 langkah: 5, 6, 7."],
+["Siti punya 4 pensil. Ibu memberi 3 lagi. Pensil Siti sekarang...",["5","6","7","8"],2,"MOTS","PJ7","4+3=7."],
+["6 + □ = 10. Bilangan yang hilang adalah...",["2","3","4","5"],2,"MOTS","PJ8","6 perlu ditambah 4 agar menjadi 10."],
+["Pasangan yang jumlahnya 9 adalah...",["3+5","4+5","2+6","1+7"],1,"MOTS","PJ9","4+5=9."],
+["4 + 5 sama dengan...",["5+4","5+5","4+4","3+5"],0,"MOTS","PJ10","Urutan bilangan boleh ditukar pada penjumlahan."],
+["3 + 2 = ...",["4","5","6","7"],1,"MOTS","PJ2","3 digabung dengan 2 menjadi 5."],
+["7 + 1 = ...",["6","7","8","9"],2,"MOTS","PJ2","7 bertambah 1 menjadi 8."],
+["1 + 6 = ...",["6","7","8","9"],1,"MOTS","PJ2","1+6=7."],
+["2 + 6 = ...",["7","8","9","10"],1,"MOTS","PJ2","2+6=8."],
+["5 + 3 = ...",["7","8","9","10"],1,"MOTS","PJ2","5+3=8."],
+["Jika 3+5=8, maka 5+3=...",["6","7","8","9"],2,"MOTS","PJ10","Menukar posisi tidak mengubah jumlah."],
+["□ + 4 = 7",["2","3","4","5"],1,"MOTS","PJ8","3+4=7."],
+["□ + 5 = 9",["3","4","5","6"],1,"MOTS","PJ8","4+5=9."],
+["4 anak membawa masing-masing 1 bola. Jumlah bola...",["3","4","5","6"],1,"MOTS","PJ7","Ada 4 anak, masing-masing satu bola, jadi 4 bola."],
+["Ada 5 burung. Datang 2 lagi. Sekarang...",["6","7","8","9"],1,"MOTS","PJ7","5+2=7."],
+["5 + 3 dan 3 + 5 hasilnya...",["berbeda","sama","nol","tidak dapat diketahui"],1,"HOTS","PJ10","Keduanya menghasilkan 8."],
+["Dua bilangan berbeda yang jumlahnya 10 adalah...",["4 dan 6","3 dan 3","5 dan 5","2 dan 7"],0,"HOTS","PJ9","4+6=10 dan kedua bilangannya berbeda."],
+["Ada 6 bola. Agar menjadi 10 bola, harus ditambah...",["2","3","4","5"],2,"HOTS","PJ7","10-6=4, jadi perlu 4 bola."],
+["Cara lain untuk membuat 8 selain 3+5 adalah...",["2+6","2+5","4+5","1+6"],0,"HOTS","PJ9","2+6 juga menghasilkan 8."],
+["□ + 6 = 10. Bilangan yang tepat adalah...",["2","3","4","5"],2,"HOTS","PJ10","4+6=10."]
+],
+
+3:[
+["7 − 3 = ...",["3","4","5","6"],1,"LOTS","PG2","Jika 3 diambil dari 7, tersisa 4."],
+["Simbol pengurangan adalah...",["+","−","=","<"],1,"LOTS","PG3","Pengurangan menggunakan tanda −."],
+["8 − 3 = ...",["4","5","6","7"],1,"LOTS","PG4","8 mundur 3 langkah menjadi 5."],
+["9 burung. 4 terbang. Sisa burung...",["4","5","6","7"],1,"MOTS","PG7","9−4=5."],
+["Selisih 8 dan 5 adalah...",["2","3","4","5"],1,"MOTS","PG6","8−5=3."],
+["9 − □ = 6",["2","3","4","5"],1,"MOTS","PG8","9−3=6."],
+["Apakah 8−3=5 benar?",["Benar","Salah","Tidak tahu","Tidak bisa"],0,"MOTS","PG9","Benar, karena 5+3=8."],
+["10 − 4 = ...",["5","6","7","8"],1,"MOTS","PG2","10 diambil 4, tersisa 6."],
+["6 − 2 = ...",["3","4","5","6"],1,"MOTS","PG2","6−2=4."],
+["9 − 2 = ...",["6","7","8","9"],1,"MOTS","PG2","9−2=7."],
+["7 − 5 = ...",["1","2","3","4"],1,"MOTS","PG2","Tersisa 2."],
+["8 − 1 = ...",["6","7","8","9"],1,"MOTS","PG2","8−1=7."],
+["5 − 2 = ...",["2","3","4","5"],1,"MOTS","PG2","5−2=3."],
+["10 − 3 = ...",["6","7","8","9"],1,"MOTS","PG2","10−3=7."],
+["6 − 4 = ...",["1","2","3","4"],1,"MOTS","PG2","6−4=2."],
+["□ − 2 = 6",["7","8","9","10"],1,"MOTS","PG8","8−2=6."],
+["□ − 3 = 5",["7","8","9","10"],1,"MOTS","PG8","8−3=5."],
+["9 − □ = 4",["4","5","6","7"],1,"MOTS","PG8","9−5=4."],
+["Ada 7 permen. 2 dimakan. Sisa...",["4","5","6","7"],1,"MOTS","PG7","7−2=5."],
+["Ada 10 ikan. 6 berwarna merah. Ikan biru ada...",["3","4","5","6"],1,"HOTS","PG10","10−6=4."],
+["9−4=5. Hubungan yang benar adalah...",["5+4=9","5−4=1","9+4=13","4−5=1"],0,"HOTS","PG10","Penjumlahan dapat memeriksa pengurangan."],
+["10 balon. 3 pecah. Sisa...",["6","7","8","9"],1,"HOTS","PG7","10−3=7."],
+["8 buku. 5 dipinjam. Sisa...",["2","3","4","5"],1,"HOTS","PG7","8−5=3."],
+["Ada 9 balok. Setelah beberapa diambil, tersisa 5. Berapa yang diambil?",["3","4","5","6"],1,"HOTS","PG10","9−5=4."],
+["10 benda. Setelah diambil 6, tersisa...",["3","4","5","6"],1,"HOTS","PG10","10−6=4."]
+],
+
+4:[
+["🔴 🔵 🔴 🔵 🔴 ... berikutnya?",["🔴","🔵","🟢","🟡"],1,"LOTS","AL1","Pola bergantian merah-biru."],
+["2, 4, 6, ...",["7","8","9","10"],1,"LOTS","AL2","Bilangan bertambah 2."],
+["🟡 🟢 🟡 ...",["🟡","🟢","🔵","🔴"],1,"LOTS","AL3","Pola kuning-hijau bergantian."],
+["1,3,5,7 aturan polanya...",["+1","+2","+3","−2"],1,"MOTS","AL4","Setiap bilangan bertambah 2."],
+["5,10,15,...",["16","18","20","25"],2,"MOTS","AL2","Bertambah 5."],
+["2,4,6,8,11. Bilangan yang salah adalah...",["2","6","8","11"],3,"MOTS","AL5","Seharusnya setelah 8 adalah 10."],
+["⭐ ⭐ 🌙 ⭐ ⭐ ...",["⭐","🌙","☀️","❤️"],1,"MOTS","AL3","Setiap dua bintang diikuti bulan."],
+["🔴 🔵 🔵 🔴 🔵 ... bagian yang salah adalah warna ke...",["1","2","3","4"],3,"HOTS","AL5","Pola merah-biru-biru seharusnya pada posisi 6 adalah biru."],
+["2,4,6,8,...",["9","10","11","12"],1,"HOTS","AL4","Aturannya +2."],
+["🔴 🔵 🔵 🔴 🔵 🔵 ... posisi ke-7?",["🔴","🔵","🟢","🟡"],0,"HOTS","AL7","Pola berulang tiga warna: merah-biru-biru."],
+["3,6,9,...",["10","11","12","13"],2,"LOTS","AL2","Bertambah 3."],
+["10,8,6,...",["5","4","3","2"],1,"MOTS","AL2","Berkurang 2."],
+["🟢 🟢 🔵 🟢 🟢 🔵 ...",["🟢","🔵","🔴","🟡"],0,"MOTS","AL2","Pola terdiri dari dua hijau lalu biru."],
+["4,6,8,...",["9","10","11","12"],1,"MOTS","AL2","Bertambah 2."],
+["5,4,3,...",["1","2","3","4"],1,"MOTS","AL2","Berkurang 1."],
+["🔺 🔵 🔺 🔵 ...",["🔺","🔵","🟢","⭐"],0,"MOTS","AL2","Bentuk bergantian."],
+["2,4,6,...",["7","8","9","10"],1,"MOTS","AL2","Bilangan genap bertambah 2."],
+["1,2,1,2,1,...",["1","2","3","4"],1,"MOTS","AL2","Pola bergantian 1 dan 2."],
+["10,9,8,...",["6","7","8","9"],1,"MOTS","AL2","Berkurang 1."],
+["⭐ 🌙 ⭐ 🌙 ⭐ ...",["⭐","🌙","🔵","🔺"],1,"MOTS","AL2","Setelah bintang selalu bulan."],
+["1,3,5,7,...",["8","9","10","11"],1,"HOTS","AL4","Bilangan bertambah 2."],
+["2,5,8,...",["9","10","11","12"],2,"HOTS","AL7","Bertambah 3."],
+["🔴 🔴 🔵 🔴 🔴 🔵 ...",["🔴","🔵","🟢","⭐"],0,"HOTS","AL7","Pola dua merah lalu biru."],
+["6,8,10,12,...",["13","14","15","16"],1,"HOTS","AL7","Bertambah 2."],
+["🔴 🔵 🔵 🔴 🔵 🔵 ... posisi ke-7?",["🔴","🔵","🟢","🟡"],0,"HOTS","AL6","Pola berulang setiap tiga benda."]
+],
+
+5:[
+["Pensil A lebih panjang daripada B. Yang lebih panjang adalah...",["A","B","Sama","Tidak tahu"],0,"LOTS","UK1","Informasi sudah menyatakan A lebih panjang."],
+["Batu lebih berat daripada bulu. Yang lebih ringan adalah...",["Batu","Bulu","Sama","Tidak tahu"],1,"LOTS","UK4","Bulu lebih ringan."],
+["Setelah pagi adalah...",["malam","siang","kemarin","besok"],1,"LOTS","UK6","Setelah pagi adalah siang."],
+["Urutan panjang dari pendek ke panjang: 2 cm, 5 cm, 8 cm adalah...",["8,5,2","2,5,8","5,2,8","2,8,5"],1,"MOTS","UK2","2 paling pendek dan 8 paling panjang."],
+["Urutan ringan ke berat: bulu, apel, batu adalah...",["bulu-apel-batu","batu-apel-bulu","apel-batu-bulu","bulu-batu-apel"],0,"MOTS","UK5","Bulu ringan, kemudian apel, kemudian batu."],
+["Urutan kegiatan yang benar...",["sekolah-bangun-sarapan","bangun-sarapan-sekolah","sarapan-sekolah-bangun","sekolah-sarapan-bangun"],1,"MOTS","UK7","Biasanya kita bangun, sarapan, lalu sekolah."],
+["A lebih tinggi dari B. B lebih tinggi dari C. Yang paling pendek...",["A","B","C","Sama"],2,"MOTS","UK3","Jika A>B>C, C paling pendek."],
+["Balon besar dan batu kecil. Apakah benda besar selalu lebih berat?",["Ya","Tidak","Selalu","Tidak tahu"],1,"HOTS","UK8","Ukuran tidak selalu menentukan berat."],
+["Panjang A=7, B=4, C=6. Yang berada di tengah...",["A","B","C","Tidak ada"],2,"HOTS","UK8","Urutannya 4,6,7 sehingga C berada di tengah."],
+["Urutan kegiatan yang masuk akal...",["bangun-sarapan-sekolah","sekolah-bangun-sarapan","sarapan-bangun-sekolah","sekolah-sarapan-bangun"],0,"HOTS","UK7","Urutan waktu perlu masuk akal."],
+["Tali 5 cm dan tali 3 cm. Yang lebih panjang...",["3 cm","5 cm","Sama","Tidak tahu"],1,"LOTS","UK1","5 cm lebih panjang."],
+["Meja lebih tinggi daripada kursi. Yang lebih rendah...",["meja","kursi","sama","tidak tahu"],1,"LOTS","UK3","Kursi lebih rendah."],
+["Urutan tinggi: A tinggi, B sedang, C rendah. Yang paling tinggi...",["A","B","C","sama"],0,"MOTS","UK3","A paling tinggi."],
+["Batu, apel, kapas. Yang paling ringan...",["batu","apel","kapas","semua sama"],2,"MOTS","UK4","Kapas paling ringan."],
+["Mana yang paling berat?",["bulu","kertas","batu","kapas"],2,"MOTS","UK4","Batu paling berat."],
+["Urutan dari pendek ke panjang: 4,2,6.",["2,4,6","4,2,6","6,4,2","2,6,4"],0,"MOTS","UK2","2,4,6."],
+["Urutan kejadian: tidur malam, bangun pagi, pergi sekolah.",["tidur-bangun-sekolah","bangun-tidur-sekolah","sekolah-bangun-tidur","sekolah-tidur-bangun"],0,"MOTS","UK7","Itulah urutan waktunya."],
+["Jika A lebih panjang dari B, maka...",["A lebih pendek","B lebih pendek","A dan B sama","tidak tahu"],1,"MOTS","UK1","Jika A lebih panjang, B lebih pendek."],
+["Jika batu lebih berat dari apel, maka...",["apel lebih berat","batu lebih berat","sama","tidak tahu"],1,"MOTS","UK4","Informasi sudah menyatakan batu lebih berat."],
+["Pita merah 8 cm dan biru 5 cm. Selisih panjangnya...",["2 cm","3 cm","4 cm","5 cm"],1,"HOTS","UK8","8−5=3 cm."],
+["A lebih panjang dari B. B lebih panjang dari C. Yang paling panjang...",["A","B","C","sama"],0,"HOTS","UK8","A paling panjang."],
+["Jam menunjukkan pagi. Kegiatan yang mungkin...",["tidur malam","berangkat sekolah","makan malam","bermimpi"],1,"HOTS","UK7","Berangkat sekolah biasanya dilakukan pagi."],
+["Benda A berat, B ringan, C sedang. Urutan ringan ke berat...",["A-B-C","B-C-A","C-A-B","B-A-C"],1,"HOTS","UK5","Ringan → sedang → berat."],
+["Pita 4 cm, 6 cm, 5 cm. Urutan panjang...",["4,5,6","6,5,4","5,4,6","4,6,5"],0,"HOTS","UK2","Urutan dari pendek ke panjang adalah 4,5,6."],
+["Balon besar bisa lebih ringan daripada batu kecil karena...",["balon tidak punya warna","ukuran selalu menentukan berat","bahan benda memengaruhi berat","semua benda sama"],2,"HOTS","UK8","Berat dipengaruhi bahan dan sifat benda, bukan ukuran saja."]
+],
+
+6:[
+["Bentuk dengan 3 sisi adalah...",["lingkaran","segitiga","persegi","persegi panjang"],1,"LOTS","GE1","Segitiga mempunyai 3 sisi."],
+["Bentuk yang tidak memiliki sudut adalah...",["persegi","segitiga","lingkaran","persegi panjang"],2,"LOTS","GE1","Lingkaran tidak memiliki sudut."],
+["📺 Bentuk layar televisi biasanya seperti...",["lingkaran","persegi panjang","segitiga","bintang"],1,"LOTS","GE3","Layar TV biasanya berbentuk persegi panjang."],
+["Kelompok yang memiliki 4 sisi adalah...",["segitiga dan lingkaran","persegi dan persegi panjang","lingkaran dan segitiga","bintang dan lingkaran"],1,"MOTS","GE2","Persegi dan persegi panjang sama-sama memiliki 4 sisi."],
+["Jam dinding biasanya menyerupai...",["lingkaran","segitiga","persegi panjang","bintang"],0,"MOTS","GE3","Jam dinding banyak yang berbentuk lingkaran."],
+["Persamaan persegi dan persegi panjang adalah...",["sama-sama 3 sisi","sama-sama 4 sisi","sama-sama tidak punya sisi","sama-sama lingkaran"],1,"MOTS","GE4","Keduanya memiliki 4 sisi."],
+["Dua segitiga dapat disusun menjadi...",["bentuk segi empat","lingkaran selalu","tidak bisa","satu titik"],0,"MOTS","GE5","Dua segitiga dapat disusun menjadi berbagai bentuk segi empat."],
+["Sebuah persegi dipotong dari satu sudut ke sudut yang berlawanan. Hasilnya...",["dua segitiga","dua lingkaran","satu segitiga","empat lingkaran"],0,"HOTS","GE6","Garis diagonal membagi persegi menjadi dua segitiga."],
+["Pernyataan 'semua bentuk 4 sisi adalah persegi' adalah...",["benar","salah","selalu benar","tidak tahu"],1,"HOTS","GE4","Persegi panjang juga mempunyai 4 sisi."],
+["Jika sebuah segitiga diputar, bentuknya menjadi...",["lingkaran","tetap segitiga","persegi","berubah menjadi garis"],1,"HOTS","GE6","Memutar tidak mengubah jenis bentuk."],
+["Bentuk roda adalah...",["lingkaran","segitiga","persegi","oval selalu"],0,"LOTS","GE1","Roda berbentuk lingkaran."],
+["Bentuk rambu segitiga memiliki...",["2 sisi","3 sisi","4 sisi","5 sisi"],1,"LOTS","GE1","Segitiga memiliki 3 sisi."],
+["Buku biasanya berbentuk...",["persegi panjang","lingkaran","segitiga","bintang"],0,"MOTS","GE3","Buku umumnya berbentuk persegi panjang."],
+["Koin biasanya berbentuk...",["segitiga","lingkaran","persegi","persegi panjang"],1,"MOTS","GE3","Koin berbentuk lingkaran."],
+["Persegi mempunyai jumlah sisi...",["2","3","4","5"],2,"MOTS","GE1","Persegi mempunyai 4 sisi."],
+["Persegi panjang mempunyai jumlah sudut...",["2","3","4","5"],2,"MOTS","GE1","Persegi panjang memiliki 4 sudut."],
+["Segitiga dan persegi sama-sama mempunyai...",["3 sisi","4 sisi","sudut","tidak ada sisi"],2,"MOTS","GE4","Keduanya memiliki sudut."],
+["Lingkaran dan persegi berbeda karena...",["keduanya punya 4 sisi","lingkaran tidak punya sisi lurus","keduanya segitiga","persegi tidak punya sisi"],1,"MOTS","GE4","Lingkaran tidak memiliki sisi lurus seperti persegi."],
+["Susunan dua segitiga dapat membentuk...",["persegi","selalu lingkaran","tidak ada bentuk","titik"],0,"MOTS","GE5","Dua segitiga dapat membentuk persegi dalam susunan tertentu."],
+["Sebuah persegi panjang diputar 90°. Bentuknya...",["tetap persegi panjang","menjadi lingkaran","menjadi segitiga","hilang"],0,"HOTS","GE6","Rotasi tidak mengubah bentuk."],
+["Semua persegi adalah segi empat karena...",["punya 4 sisi","punya 3 sisi","tidak punya sisi","berbentuk bulat"],0,"HOTS","GE4","Segi empat berarti memiliki 4 sisi."],
+["Mana yang bukan bentuk 4 sisi?",["persegi","persegi panjang","segitiga","keduanya 4 sisi"],2,"HOTS","GE2","Segitiga memiliki 3 sisi."],
+["Jika dua persegi kecil digabung berdampingan, dapat membentuk...",["persegi panjang","lingkaran","segitiga","titik"],0,"HOTS","GE5","Dua persegi berdampingan dapat membentuk persegi panjang."],
+["Bentuk mana yang dapat dibuat dari 2 segitiga?",["beberapa bentuk segi empat","hanya lingkaran","tidak bisa","hanya titik"],0,"HOTS","GE5","Dua segitiga dapat disusun menjadi beberapa bentuk."],
+["Sebuah bentuk diputar tetapi sisi dan sudutnya tetap sama. Kesimpulannya...",["bentuk berubah jenis","bentuk tetap sama","bentuk hilang","menjadi lingkaran"],1,"HOTS","GE6","Rotasi mengubah arah, bukan jenis bentuk."]
+],
+
+7:[
+["🍎🍎🍎🍎. Jumlah apel...",["3","4","5","6"],1,"LOTS","DT3","Ada 4 apel."],
+["Apel 5 dan pisang 3. Buah yang lebih banyak...",["apel","pisang","sama","tidak tahu"],0,"LOTS","DT4","5 lebih banyak daripada 3."],
+["Apel 3 dan jeruk 2. Yang paling sedikit...",["apel","jeruk","sama","tidak tahu"],1,"LOTS","DT5","2 lebih sedikit daripada 3."],
+["Data A=6 dan B=4. Selisihnya...",["1","2","3","4"],1,"MOTS","DT6","6−4=2."],
+["Kucing 5, ikan 3, kelinci 2. Jumlah ikan...",["2","3","4","5"],1,"MOTS","DT7","Data menunjukkan ikan berjumlah 3."],
+["Apel 5, pisang 3. Apel lebih banyak ...",["1","2","3","4"],1,"MOTS","DT6","5−3=2."],
+["Apel 4, pisang 3. Satu apel dipindah menjadi pisang. Data baru...",["apel 3 pisang 4","apel 4 pisang 3","apel 2 pisang 5","apel 5 pisang 2"],0,"MOTS","DT8","Apel berkurang 1, pisang bertambah 1."],
+["Apel 5, jeruk 3, pisang 2. Satu apel dipindah ke jeruk. Data baru...",["4,4,2","5,4,1","4,3,3","3,5,2"],0,"HOTS","DT8","Apel menjadi 4, jeruk 4, pisang tetap 2."],
+["Apel 4, pisang 3, jeruk 2. Dua pisang dipindah ke jeruk. Data baru...",["4,1,4","2,3,4","4,3,2","4,5,2"],0,"HOTS","DT8","Pisang 3−2=1 dan jeruk 2+2=4."],
+["Bola 6, tali 4, puzzle 3. Dua bola dipindah ke puzzle. Data baru...",["4,4,5","6,4,5","4,6,3","2,4,7"],0,"HOTS","DT8","Bola 4 dan puzzle 5."],
+["Data apel 2, jeruk 5. Buah paling banyak...",["apel","jeruk","sama","tidak tahu"],1,"LOTS","DT6","5 lebih banyak daripada 2."],
+["Ada 3 pensil merah dan 5 pensil biru. Pensil lebih banyak...",["merah","biru","sama","tidak tahu"],1,"LOTS","DT6","5 lebih banyak."],
+["Data buku: Senin 2, Selasa 4. Hari dengan lebih banyak buku...",["Senin","Selasa","sama","tidak tahu"],1,"MOTS","DT4","4 lebih banyak dari 2."],
+["Kucing 6, anjing 4. Selisih...",["1","2","3","4"],1,"MOTS","DT6","6−4=2."],
+["Data warna: merah 4, biru 4. Kesimpulan...",["merah lebih banyak","biru lebih banyak","jumlah sama","tidak tahu"],2,"MOTS","DT7","Keduanya berjumlah 4."],
+["Apel 7, pisang 5. Pisang perlu ditambah berapa agar sama?",["1","2","3","4"],1,"MOTS","DT8","5+2=7."],
+["Data 3,5,4. Yang paling banyak...",["3","5","4","semua"],1,"MOTS","DT6","5 paling besar."],
+["Data 2,4,6. Yang paling sedikit...",["2","4","6","sama"],0,"MOTS","DT6","2 paling kecil."],
+["Ada 4 bola merah dan 4 bola biru. Jumlah seluruh bola...",["4","6","8","10"],2,"MOTS","DT3","4+4=8."],
+["Data 5 apel, 2 jeruk. Jumlah seluruh buah...",["5","6","7","8"],2,"MOTS","DT3","5+2=7."],
+["Data A=5, B=5. Jika satu A dipindah ke B, maka...",["A=4 B=6","A=5 B=4","A=6 B=4","A=4 B=5"],0,"HOTS","DT8","A berkurang 1 dan B bertambah 1."],
+["Data 6,4,2. Jika dua dari kelompok pertama dipindah ke kelompok ketiga...",["4,4,4","6,2,4","4,4,2","5,4,3"],0,"HOTS","DT8","6−2=4 dan 2+2=4."],
+["Kelompok A=4 dan B=2. Agar sama, A perlu...",["memberi 1 ke B","mendapat 1","mendapat 2","tidak berubah"],0,"HOTS","DT8","Jika 1 dipindah dari A ke B, menjadi 3 dan 3."],
+["Data 2,3,5. Jika satu dari kelompok terbesar diberikan ke kelompok terkecil, data menjadi...",["3,3,4","2,4,4","3,3,5","1,4,5"],0,"HOTS","DT8","Kelompok terbesar 5 menjadi 4 dan terkecil 2 menjadi 3."],
+["Apel 5, pisang 3, jeruk 4. Urutan terbanyak ke tersedikit...",["apel-jeruk-pisang","jeruk-apel-pisang","pisang-jeruk-apel","apel-pisang-jeruk"],0,"HOTS","DT7","5, 4, 3."]
+],
+
+8:[
+["Bilangan setelah 18 adalah...",["17","18","19","20"],2,"LOTS","B8","Sesudah 18 adalah 19."],
+["3 apel + 2 apel = ...",["4","5","6","7"],1,"LOTS","PJ2","3+2=5."],
+["Bentuk dengan 3 sisi adalah...",["lingkaran","segitiga","persegi","persegi panjang"],1,"LOTS","GE1","Segitiga mempunyai 3 sisi."],
+["7 stiker + 2 stiker = ...",["8","9","10","11"],1,"MOTS","PJ2","7+2=9."],
+["10 balon − 3 = ...",["6","7","8","9"],1,"MOTS","PG2","10−3=7."],
+["🔴 🔵 🔴 🔵 ... berikutnya?",["🔴","🔵","🟢","🟡"],1,"MOTS","AL2","Pola bergantian."],
+["Data apel 6, mangga 4, jeruk 5. Yang paling banyak...",["apel","mangga","jeruk","sama"],0,"MOTS","DT6","6 paling banyak."],
+["8 pensil + 3 − 2 = ...",["8","9","10","11"],1,"HOTS","PJ10","8+3=11 lalu 11−2=9."],
+["Apel 5, pisang 3. Satu apel dipindah ke pisang. Data menjadi...",["apel 4 pisang 4","apel 5 pisang 4","apel 4 pisang 3","apel 3 pisang 5"],0,"HOTS","DT8","Apel berkurang satu, pisang bertambah satu."],
+["2,4,6,...",["7","8","9","10"],1,"HOTS","AL7","Pola bertambah 2."]
+]
+
+};
+
+
+/* =========================================================
+   ASSESSMENT
+   10 SOAL PER MISI
+   3 LOTS + 4 MOTS + 3 HOTS
+========================================================= */
+
+const ASSESSMENT = {
+
+1:[
+["Ada 🍎 🍎 🍎 🍎 🍎 🍎. Jumlah apel adalah...",["5","6","7","8"],1,"LOTS","B1","Ada 6 apel."],
+["Jumlah ⭐ ⭐ ⭐ ⭐ ⭐ ⭐ ⭐ ⭐ adalah...",["6","7","8","9"],2,"LOTS","B2","Ada 8 bintang."],
+["Bilangan 12 dibaca...",["dua belas","dua puluh","satu dua","sepuluh dua"],0,"LOTS","B3","12 dibaca dua belas."],
+["Bilangan yang lebih besar: 7 atau 9?",["7","9","sama","tidak tahu"],1,"MOTS","B6","9 lebih besar dari 7."],
+["Urutkan 8,3,6,2 dari kecil ke besar.",["2,3,6,8","8,6,3,2","3,2,6,8","2,6,3,8"],0,"MOTS","B7","Urutannya 2,3,6,8."],
+["Bilangan sebelum 15 adalah...",["13","14","16","17"],1,"MOTS","B8","Sebelum 15 adalah 14."],
+["9 dapat diurai menjadi...",["4+5","4+6","5+5","3+7"],0,"MOTS","B10","4+5=9."],
+["Aku lebih besar dari 5 dan lebih kecil dari 9. Bilangan yang tepat adalah...",["4","7","9","10"],1,"HOTS","B11","7 memenuhi kedua syarat."],
+["8 manik-manik dibagi sama banyak kepada 2 anak. Setiap anak mendapat...",["3","4","5","6"],1,"HOTS","B11","8 dibagi 2 sama dengan 4."],
+["Kartu 2,5,8. Bilangan terbesar dengan 2 kartu adalah...",["25","52","58","85"],3,"HOTS","B9","85 adalah bilangan terbesar."]
+],
+
+2:[
+["2 + 3 = ...",["4","5","6","7"],1,"LOTS","PJ2","2+3=5."],
+["Simbol untuk penjumlahan adalah...",["+","−","×","<"],0,"LOTS","PJ3","Penjumlahan menggunakan +."],
+["5 + 2 = ...",["6","7","8","9"],1,"LOTS","PJ4","5+2=7."],
+["Pada garis bilangan mulai 4 maju 3 langkah. Sampai di...",["6","7","8","9"],1,"MOTS","PJ6","4→5→6→7."],
+["4 pensil ditambah 3 pensil menjadi...",["6","7","8","9"],1,"MOTS","PJ7","4+3=7."],
+["6+□=10. □ adalah...",["2","3","4","5"],2,"MOTS","PJ8","6+4=10."],
+["Pasangan yang jumlahnya 9 adalah...",["3+5","4+5","2+6","1+7"],1,"MOTS","PJ9","4+5=9."],
+["5+3 dan 3+5 memiliki hasil...",["berbeda","sama","nol","tidak diketahui"],1,"HOTS","PJ10","Keduanya 8."],
+["Dua bilangan berbeda yang jumlahnya 10 adalah...",["4 dan 6","5 dan 5","3 dan 3","2 dan 7"],0,"HOTS","PJ9","4+6=10."],
+["Ada 6 bola. Agar menjadi 10, perlu ditambah...",["2","3","4","5"],2,"HOTS","PJ7","Perlu 4 bola."]
+],
+
+3:[
+["7−3=...",["3","4","5","6"],1,"LOTS","PG2","7−3=4."],
+["Simbol pengurangan adalah...",["+","−","=","<"],1,"LOTS","PG3","Pengurangan memakai −."],
+["8−3=...",["4","5","6","7"],1,"LOTS","PG4","8 mundur 3 menjadi 5."],
+["9 burung, 4 terbang. Sisa...",["4","5","6","7"],1,"MOTS","PG7","9−4=5."],
+["Selisih 8 dan 5 adalah...",["2","3","4","5"],1,"MOTS","PG6","8−5=3."],
+["9−□=6. □ adalah...",["2","3","4","5"],1,"MOTS","PG8","9−3=6."],
+["8−3=5 dapat diperiksa dengan...",["5+3=8","5−3=2","8+3=11","3−5=2"],0,"MOTS","PG9","Penjumlahan balik dapat memeriksa pengurangan."],
+["9−4=5. Hubungan yang benar...",["5+4=9","5−4=1","9+4=13","4−5=1"],0,"HOTS","PG10","5+4=9."],
+["10 ikan, 6 merah. Ikan biru...",["3","4","5","6"],1,"HOTS","PG10","10−6=4."],
+["9 balok, tersisa 5. Yang diambil...",["3","4","5","6"],1,"HOTS","PG7","9−5=4."]
+],
+
+4:[
+["🔴🔵🔴🔵🔴... berikutnya?",["🔴","🔵","🟢","🟡"],1,"LOTS","AL1","Pola bergantian."],
+["2,4,6,...",["7","8","9","10"],1,"LOTS","AL2","Bertambah 2."],
+["🟡🟢🟡... yang hilang?",["🟡","🟢","🔵","🔴"],1,"LOTS","AL3","Pola bergantian."],
+["1,3,5,7 aturan...",["+1","+2","+3","−2"],1,"MOTS","AL4","Bertambah 2."],
+["5,10,15,...",["16","18","20","25"],2,"MOTS","AL2","Bertambah 5."],
+["2,4,6,8,11. Yang salah...",["2","6","8","11"],3,"MOTS","AL5","Seharusnya 10."],
+["⭐⭐🌙⭐⭐... yang hilang?",["⭐","🌙","☀️","❤️"],1,"MOTS","AL3","Setelah dua bintang adalah bulan."],
+["🔴🔵🔵🔴🔵🔵. Bagian yang salah adalah...",["warna 1","warna 2","warna 4","warna 6"],2,"HOTS","AL5","Pola ini sebenarnya konsisten; soal dapat digunakan untuk menemukan bahwa tidak ada kesalahan. Pilihan yang diberikan menunjukkan warna 4, tetapi pola dasar merah-biru-biru tetap konsisten."],
+["2,4,6,8,...",["9","10","11","12"],1,"HOTS","AL4","Bertambah 2."],
+["🔴🔵🔵 berulang. Posisi ke-7 adalah...",["🔴","🔵","🟢","🟡"],0,"HOTS","AL7","Posisi 7 kembali ke merah."]
+],
+
+5:[
+["A lebih panjang dari B. Yang lebih panjang...",["A","B","sama","tidak tahu"],0,"LOTS","UK1","A lebih panjang."],
+["Batu lebih berat dari bulu. Yang lebih ringan...",["batu","bulu","sama","tidak tahu"],1,"LOTS","UK4","Bulu lebih ringan."],
+["Setelah pagi adalah...",["malam","siang","kemarin","besok"],1,"LOTS","UK6","Setelah pagi adalah siang."],
+["Urutan 2,5,8 cm dari pendek ke panjang...",["2,5,8","8,5,2","5,2,8","2,8,5"],0,"MOTS","UK2","2 paling pendek, 8 paling panjang."],
+["Urutan ringan ke berat: bulu, apel, batu.",["bulu-apel-batu","batu-apel-bulu","apel-batu-bulu","bulu-batu-apel"],0,"MOTS","UK5","Urutannya demikian."],
+["Urutan kegiatan yang benar...",["sekolah-bangun-sarapan","bangun-sarapan-sekolah","sarapan-sekolah-bangun","sekolah-sarapan-bangun"],1,"MOTS","UK7","Bangun, sarapan, lalu sekolah."],
+["A>B>C dalam tinggi. Yang paling pendek...",["A","B","C","sama"],2,"MOTS","UK3","C paling pendek."],
+["Balon besar dan batu kecil. Apakah besar selalu lebih berat?",["ya","tidak","selalu","pasti"],1,"HOTS","UK8","Ukuran tidak selalu menentukan berat."],
+["Panjang 7,4,6. Yang di tengah...",["7","4","6","tidak ada"],2,"HOTS","UK8","Urutan 4,6,7."],
+["Urutan waktu yang benar...",["bangun-sarapan-sekolah","sekolah-bangun-sarapan","sarapan-sekolah-bangun","sekolah-sarapan-bangun"],0,"HOTS","UK7","Urutan kegiatan masuk akal."]
+],
+
+6:[
+["Bentuk 3 sisi...",["lingkaran","segitiga","persegi","persegi panjang"],1,"LOTS","GE1","Segitiga punya 3 sisi."],
+["Bentuk tanpa sudut...",["persegi","segitiga","lingkaran","persegi panjang"],2,"LOTS","GE1","Lingkaran tidak punya sudut."],
+["Layar TV menyerupai...",["lingkaran","persegi panjang","segitiga","bintang"],1,"LOTS","GE3","Layar TV berbentuk persegi panjang."],
+["Bentuk dengan 4 sisi...",["segitiga","persegi dan persegi panjang","lingkaran","bintang"],1,"MOTS","GE2","Persegi dan persegi panjang."],
+["Jam dinding biasanya menyerupai...",["lingkaran","segitiga","bintang","garis"],0,"MOTS","GE3","Jam sering berbentuk lingkaran."],
+["Persamaan persegi dan persegi panjang...",["3 sisi","4 sisi","tidak punya sisi","1 sisi"],1,"MOTS","GE4","Keduanya 4 sisi."],
+["Dua segitiga dapat disusun menjadi...",["segi empat","lingkaran selalu","titik","tidak bisa"],0,"MOTS","GE5","Dapat disusun menjadi segi empat."],
+["Persegi dipotong diagonal menjadi...",["dua segitiga","dua lingkaran","satu lingkaran","empat segitiga"],0,"HOTS","GE6","Diagonal membentuk dua segitiga."],
+["'Semua bentuk 4 sisi adalah persegi'...",["benar","salah","selalu","tidak tahu"],1,"HOTS","GE4","Persegi panjang juga 4 sisi."],
+["Segitiga diputar. Bentuknya...",["lingkaran","tetap segitiga","persegi","garis"],1,"HOTS","GE6","Rotasi tidak mengubah bentuk."]
+],
+
+7:[
+["Jumlah 🍎🍎🍎🍎 adalah...",["3","4","5","6"],1,"LOTS","DT3","Ada 4 apel."],
+["Apel 5, pisang 3. Yang lebih banyak...",["apel","pisang","sama","tidak tahu"],0,"LOTS","DT4","Apel lebih banyak."],
+["Apel 3, jeruk 2. Yang paling sedikit...",["apel","jeruk","sama","tidak tahu"],1,"LOTS","DT5","Jeruk 2."],
+["Data 6 dan 4. Selisih...",["1","2","3","4"],1,"MOTS","DT6","6−4=2."],
+["Kucing 5, ikan 3, kelinci 2. Jumlah ikan...",["2","3","4","5"],1,"MOTS","DT7","Ikan 3."],
+["Apel 5, pisang 3. Selisih...",["1","2","3","4"],1,"MOTS","DT6","5−3=2."],
+["Apel 4, pisang 3. Satu apel dipindah ke pisang. Hasil...",["apel 3 pisang 4","apel 4 pisang 3","apel 2 pisang 5","apel 5 pisang 2"],0,"MOTS","DT8","Apel berkurang dan pisang bertambah."],
+["Apel 5, jeruk 3, pisang 2. Satu apel ke jeruk. Hasil...",["4,4,2","5,4,1","4,3,3","3,5,2"],0,"HOTS","DT8","4 apel, 4 jeruk, 2 pisang."],
+["Apel 4, pisang 3, jeruk 2. Dua pisang ke jeruk. Hasil...",["4,1,4","2,3,4","4,3,2","4,5,2"],0,"HOTS","DT8","Pis. 1 dan jeruk 4."],
+["Bola 6, tali 4, puzzle 3. Dua bola ke puzzle. Hasil...",["4,4,5","6,4,5","4,6,3","2,4,7"],0,"HOTS","DT8","Bola 4, tali 4, puzzle 5."]
+],
+
+8:[
+["Bilangan setelah 18...",["17","18","19","20"],2,"LOTS","B8","19."],
+["3+2 apel...",["4","5","6","7"],1,"LOTS","PJ2","5."],
+["Bentuk 3 sisi...",["lingkaran","segitiga","persegi","persegi panjang"],1,"LOTS","GE1","Segitiga."],
+["7+2...",["8","9","10","11"],1,"MOTS","PJ2","9."],
+["10−3...",["6","7","8","9"],1,"MOTS","PG2","7."],
+["🔴🔵🔴🔵 berikutnya...",["🔴","🔵","🟢","🟡"],1,"MOTS","AL2","Biru."],
+["Apel 6, mangga 4, jeruk 5. Terbanyak...",["apel","mangga","jeruk","sama"],0,"MOTS","DT6","Apel."],
+["8+3−2...",["8","9","10","11"],1,"HOTS","PJ10","8+3=11, dikurangi 2 menjadi 9."],
+["Apel 5, pisang 3. Satu apel ke pisang. Hasil...",["4 dan 4","5 dan 4","4 dan 3","3 dan 5"],0,"HOTS","DT8","Menjadi 4 dan 4."],
+["2,4,6,...",["7","8","9","10"],1,"HOTS","AL7","8."]
+]
+
+};
+
+
+/* =========================================================
+   STATE
+========================================================= */
+
+let state={
+  studentName:"",
+  studentClass:"",
+  mission:1,
+  mode:"",
+  index:0,
+  score:0,
+  correct:0,
+  wrong:0,
+  attempts:0,
+  scaffold:0,
+  answered:false,
+  practiceScore:0,
+  assessmentScore:0,
+  practiceData:{},
+  assessmentData:{},
+  grandScore:0
+};
+
+
+/* =========================================================
+   SCREEN
+========================================================= */
+
+const screens=[
+"homeScreen",
+"mapScreen",
+"lessonScreen",
+"practiceScreen",
+"practiceResultScreen",
+"assessmentScreen",
+"assessmentResultScreen",
+"grandResultScreen",
+"teacherScreen"
+];
+
+function show(id){
+  screens.forEach(x=>{
+    document.getElementById(x).classList.add("hidden");
+  });
+  document.getElementById(id).classList.remove("hidden");
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function goHome(){
+  document.getElementById("studentHeader").classList.add("hidden");
+  show("homeScreen");
+}
+
+function showMap(){
+  renderMap();
+  show("mapScreen");
+}
+
+
+/* =========================================================
+   START
+========================================================= */
+
+function startAdventure(){
+
+  const name=document.getElementById("studentName").value.trim();
+
+  if(!name){
+    alert("Silakan tuliskan nama siswa terlebih dahulu.");
+    return;
+  }
+
+  state.studentName=name;
+  state.studentClass=document.getElementById("studentClass").value;
+
+  state.practiceData={};
+  state.assessmentData={};
+  state.grandScore=0;
+
+  document.getElementById("studentHeader").textContent=
+    "👧 "+state.studentName+" • Kelas "+state.studentClass;
+
+  document.getElementById("studentHeader").classList.remove("hidden");
+
+  saveCurrent();
+  renderMap();
+  show("mapScreen");
+}
+
+
+/* =========================================================
+   MAP
+========================================================= */
+
+function renderMap(){
+
+  document.getElementById("welcomeText").innerHTML=
+    `Selamat datang, <b>${escapeHTML(state.studentName)}</b>! 🌟`;
+
+  let completed=0;
+
+  MISSIONS.forEach(m=>{
+    if(
+      state.assessmentData[m.id] ||
+      (m.id===8 && state.grandScore)
+    ) completed++;
+  });
+
+  document.getElementById("overallProgress").style.width=
+    ((completed/MISSIONS.length)*100)+"%";
+
+  document.getElementById("overallText").textContent=
+    `${completed} dari 8 misi telah diselesaikan`;
+
+  const grid=document.getElementById("missionGrid");
+  grid.innerHTML="";
+
+  MISSIONS.forEach(m=>{
+
+    const assessmentDone=state.assessmentData[m.id];
+    const practiceDone=state.practiceData[m.id];
+
+    const div=document.createElement("div");
+    div.className="mission";
+
+    div.innerHTML=`
+      <div>
+        <div class="mission-icon">${m.icon}</div>
+        <div class="mission-title">${m.title}</div>
+        <div class="mission-desc">${m.short}</div>
+      </div>
+
+      <div>
+        ${
+          practiceDone
+          ? `<small>🎮 Latihan: ${practiceDone.score}%</small><br>`
+          : ""
+        }
+
+        ${
+          assessmentDone
+          ? `<small>📝 Asesmen: ${assessmentDone.score}%</small>`
+          : ""
+        }
+
+        <button class="btn btn-small"
+          onclick="openMission(${m.id})">
+          ${assessmentDone?"🔁 Buka Lagi":"🚀 Masuk Misi"}
+        </button>
+      </div>
+    `;
+
+    grid.appendChild(div);
+  });
+}
+
+
+/* =========================================================
+   LESSON
+========================================================= */
+
+function openMission(id){
+
+  state.mission=id;
+
+  if(id===8){
+    renderLesson(8);
+    show("lessonScreen");
+    return;
+  }
+
+  renderLesson(id);
+  show("lessonScreen");
+}
+
+
+function renderLesson(id){
+
+  const m=MISSIONS.find(x=>x.id===id);
+
+  let content="";
+
+  if(id===1){
+    content=`
+    <div class="lesson-banner">
+      <div class="big">🔢</div>
+      <h2>Petualangan Bilangan</h2>
+      <p>${m.objective}</p>
+    </div>
+
+    <div class="card">
+      <h3>🧱 CONCRETE — Amati Benda</h3>
+      <p>Hitung benda satu per satu.</p>
+      <div class="object-row">🍎 🍎 🍎 🍎 🍎</div>
+      <div class="example"><b>Ada berapa apel?</b><br>Hitung: 1, 2, 3, 4, 5. Jadi ada <b>5 apel</b>.</div>
+    </div>
+
+    <div class="card">
+      <h3>🖼️ PICTORIAL — Lihat Gambar</h3>
+      <div class="object-row">⭐⭐⭐⭐⭐⭐⭐</div>
+      <p class="center">Gambar di atas menunjukkan bilangan <b>7</b>.</p>
+    </div>
+
+    <div class="card">
+      <h3>🔢 ABSTRACT — Gunakan Angka</h3>
+      <p>Bilangan dapat dibandingkan dan diurutkan.</p>
+      <div class="example center">
+        3 &lt; 5<br>
+        7 &gt; 4<br>
+        2, 4, 6, 8
+      </div>
+    </div>
+    `;
+  }
+
+  else if(id===2){
+    content=`
+    <div class="lesson-banner">
+      <div class="big">➕</div>
+      <h2>Negeri Penjumlahan</h2>
+      <p>${m.objective}</p>
+    </div>
+
+    <div class="card">
+      <h3>🧱 CONCRETE — Gabungkan</h3>
+      <div class="object-row">🍎 🍎 &nbsp; + &nbsp; 🍎 🍎 🍎</div>
+      <p class="center">2 apel digabung dengan 3 apel menjadi <b>5 apel</b>.</p>
+    </div>
+
+    <div class="card">
+      <h3>🖼️ PICTORIAL — Gambar</h3>
+      <div class="example center">
+        🍎🍎 + 🍎🍎🍎 = 🍎🍎🍎🍎🍎
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>🔢 ABSTRACT — Simbol</h3>
+      <div class="example center" style="font-size:28px;font-weight:900">
+        2 + 3 = 5
+      </div>
+    </div>
+    `;
+  }
+
+  else if(id===3){
+    content=`
+    <div class="lesson-banner">
+      <div class="big">➖</div>
+      <h2>Negeri Pengurangan</h2>
+      <p>${m.objective}</p>
+    </div>
+
+    <div class="card">
+      <h3>🧱 CONCRETE — Ambil Benda</h3>
+      <div class="object-row">🍎 🍎 🍎 🍎 🍎</div>
+      <p class="center">Ada 5 apel. Ambil 2.</p>
+      <div class="object-row">🍎 🍎 🍎</div>
+      <p class="center"><b>Tersisa 3 apel.</b></p>
+    </div>
+
+    <div class="card">
+      <h3>🖼️ PICTORIAL — Gambar</h3>
+      <div class="example center">⭐⭐⭐⭐⭐ − ⭐⭐ = ⭐⭐⭐</div>
+    </div>
+
+    <div class="card">
+      <h3>🔢 ABSTRACT — Simbol</h3>
+      <div class="example center" style="font-size:28px;font-weight:900">
+        5 − 2 = 3
+      </div>
+    </div>
+    `;
+  }
+
+  else if(id===4){
+    content=`
+    <div class="lesson-banner">
+      <div class="big">🧩</div>
+      <h2>Kota Pola</h2>
+      <p>${m.objective}</p>
+    </div>
+
+    <div class="card">
+      <h3>👀 Amati Polanya</h3>
+      <div class="object-row">🔴 🔵 🔴 🔵 🔴 🔵</div>
+      <p class="center">Pola: merah – biru – merah – biru.</p>
+    </div>
+
+    <div class="card">
+      <h3>🔢 Pola Bilangan</h3>
+      <div class="example center" style="font-size:28px;font-weight:900">
+        2 → 4 → 6 → 8 → ?
+      </div>
+      <p class="center">Aturannya adalah <b>+2</b>.</p>
+    </div>
+
+    <div class="card">
+      <h3>🕵️ Detektif Pola</h3>
+      <p>Carilah bagian yang tidak sesuai dengan aturan pola.</p>
+    </div>
+    `;
+  }
+
+  else if(id===5){
+    content=`
+    <div class="lesson-banner">
+      <div class="big">📏</div>
+      <h2>Dunia Pengukuran</h2>
+      <p>${m.objective}</p>
+    </div>
+
+    <div class="card">
+      <h3>📏 Panjang</h3>
+      <div class="example center">
+        Pita A: 8 cm<br>
+        Pita B: 5 cm
+        <br><br>
+        <b>A lebih panjang daripada B.</b>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>⚖️ Berat</h3>
+      <div class="object-row">🪶 🍎 🪨</div>
+      <p class="center">Kita dapat membandingkan benda berdasarkan berat.</p>
+    </div>
+
+    <div class="card">
+      <h3>⏰ Waktu</h3>
+      <div class="example center">
+        🌅 Pagi → ☀️ Siang → 🌇 Sore → 🌙 Malam
+      </div>
+    </div>
+    `;
+  }
+
+  else if(id===6){
+    content=`
+    <div class="lesson-banner">
+      <div class="big">🔷</div>
+      <h2>Kota Bentuk</h2>
+      <p>${m.objective}</p>
+    </div>
+
+    <div class="cpa-grid">
+      <div class="cpa">
+        <div class="cpa-icon">🔺</div>
+        <h3>Segitiga</h3>
+        <p>3 sisi</p>
+      </div>
+
+      <div class="cpa">
+        <div class="cpa-icon">⬛</div>
+        <h3>Persegi</h3>
+        <p>4 sisi</p>
+      </div>
+
+      <div class="cpa">
+        <div class="cpa-icon">⚪</div>
+        <h3>Lingkaran</h3>
+        <p>Tidak memiliki sudut</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>🧩 Bongkar dan Susun</h3>
+      <p>Dua segitiga dapat disusun menjadi berbagai bentuk baru.</p>
+      <div class="object-row">🔺 + 🔺 → ◼️</div>
+    </div>
+    `;
+  }
+
+  else if(id===7){
+    content=`
+    <div class="lesson-banner">
+      <div class="big">📊</div>
+      <h2>Kota Data</h2>
+      <p>${m.objective}</p>
+    </div>
+
+    <div class="card">
+      <h3>🍎 Contoh Data Buah</h3>
+
+      <div class="example">
+        🍎 Apel = 5<br>
+        🍌 Pisang = 3<br>
+        🍊 Jeruk = 2
+      </div>
+
+      <p><b>Pertanyaan:</b> Buah apa yang paling banyak?</p>
+      <p>Jawabannya adalah <b>apel</b>.</p>
+    </div>
+
+    <div class="card">
+      <h3>🕵️ Membaca Data</h3>
+      <p>Perhatikan jumlah. Bandingkan. Kemudian jelaskan jawabanmu.</p>
+    </div>
+    `;
+  }
+
+  else{
+    content=`
+    <div class="lesson-banner">
+      <div class="big">🏆</div>
+      <h2>Grand Mission</h2>
+      <p>${m.objective}</p>
+    </div>
+
+    <div class="card">
+      <h3>🌟 Misi Besar</h3>
+      <p>
+        Kamu akan menggunakan kemampuan bilangan,
+        penjumlahan, pengurangan, pola, pengukuran,
+        bentuk, dan data.
+      </p>
+
+      <div class="cpa-grid">
+        <div class="cpa">🔢<br><b>Bilangan</b></div>
+        <div class="cpa">➕➖<br><b>Operasi</b></div>
+        <div class="cpa">🧩📊<br><b>Penalaran</b></div>
+      </div>
+    </div>
+    `;
+  }
+
+  document.getElementById("lessonContent").innerHTML=content;
+}
+
+
+/* =========================================================
+   PRACTICE
+========================================================= */
+
+function startPractice(){
+
+  state.mode="practice";
+  state.index=0;
+  state.score=0;
+  state.correct=0;
+  state.wrong=0;
+  state.attempts=0;
+  state.scaffold=0;
+  state.answered=false;
+
+  show("practiceScreen");
+  renderPractice();
+}
+
+
+function renderPractice(){
+
+  const bank=PRACTICE[state.mission];
+
+  if(state.index>=bank.length){
+    finishPractice();
+    return;
+  }
+
+  const item=bank[state.index];
+
+  document.getElementById("practiceCounter").textContent=
+    `${state.index+1} / ${bank.length}`;
+
+  document.getElementById("practiceProgress").style.width=
+    ((state.index/bank.length)*100)+"%";
+
+  const badge=document.getElementById("practiceLevel");
+  badge.textContent=item[3];
+  badge.className="level-badge "+
+    item[3].toLowerCase();
+
+  let html=`
+    <div class="question-number">
+      LATIHAN ${state.index+1}
+    </div>
+
+    <div class="question">
+      ${item[0]}
+    </div>
+
+    <div class="options">
+  `;
+
+  item[1].forEach((op,i)=>{
+    html+=`
+      <button class="option"
+        onclick="answerPractice(${i})"
+        id="popt${i}">
+        ${op}
+      </button>
+    `;
+  });
+
+  html+="</div>";
+
+  document.getElementById("practiceQuestion").innerHTML=html;
+  document.getElementById("practiceFeedback").innerHTML="";
+  document.getElementById("practiceHint").innerHTML="";
+  state.answered=false;
+}
+
+
+function answerPractice(choice){
+
+  if(state.answered)return;
+
+  const item=PRACTICE[state.mission][state.index];
+
+  state.attempts++;
+
+  const buttons=document.querySelectorAll("#practiceQuestion .option");
+
+  if(choice===item[2]){
+
+    state.correct++;
+    state.score++;
+    state.answered=true;
+
+    buttons[choice].classList.add("correct");
+
+    document.getElementById("practiceFeedback").innerHTML=
+      `<div class="feedback good">
+        🎉 Hebat! Jawabanmu benar.<br>
+        ${item[5]}
+      </div>
+      <div class="actions">
+        <button class="btn btn-primary" onclick="nextPractice()">Lanjut ➡️</button>
+      </div>`;
+
+  }else{
+
+    state.wrong++;
+
+    buttons[choice].classList.add("wrong");
+
+    showScaffold(item);
+  }
+}
+
+
+function showScaffold(item){
+
+  const level=state.attempts;
+
+  if(level===1){
+
+    state.scaffold++;
+
+    document.getElementById("practiceFeedback").innerHTML=
+      `<div class="feedback bad">
+        Belum tepat. Tidak apa-apa 😊
+      </div>`;
+
+    document.getElementById("practiceHint").innerHTML=
+      `<div class="hint">
+        💡 <b>Petunjuk 1:</b><br>
+        Coba perhatikan kembali kata-kata penting pada soal.
+        Apa yang sebenarnya ditanyakan?
+      </div>`;
+
+  }else if(level===2){
+
+    state.scaffold++;
+
+    document.getElementById("practiceFeedback").innerHTML=
+      `<div class="feedback help">
+        🧠 Ayo gunakan gambar atau bayangkan bendanya.
+      </div>`;
+
+    document.getElementById("practiceHint").innerHTML=
+      `<div class="hint">
+        👀 <b>Petunjuk 2:</b><br>
+        ${makeVisualHint(item)}
+      </div>`;
+
+  }else{
+
+    state.scaffold++;
+
+    document.getElementById("practiceFeedback").innerHTML=
+      `<div class="feedback help">
+        🌟 Hampir! Perhatikan contoh langkahnya.
+      </div>`;
+
+    document.getElementById("practiceHint").innerHTML=
+      `<div class="hint">
+        🪜 <b>Petunjuk 3:</b><br>
+        ${item[5]}
+      </div>`;
+  }
+}
+
+
+function makeVisualHint(item){
+
+  const text=item[0];
+
+  if(text.includes("+")){
+    return "Untuk penjumlahan, gabungkan kedua kelompok.";
+  }
+
+  if(text.includes("−")){
+    return "Untuk pengurangan, mulai dari jumlah awal lalu ambil sebagian.";
+  }
+
+  if(text.includes("pola") || text.includes("...")){
+    return "Cari bagian yang berulang atau perubahan yang sama.";
+  }
+
+  if(text.includes("lebih")){
+    return "Bandingkan kedua jumlah. Mana yang lebih banyak atau lebih besar?";
+  }
+
+  return "Baca soal perlahan dan gunakan gambar dalam pikiranmu.";
+}
+
+
+function nextPractice(){
+  state.index++;
+  renderPractice();
+}
+
+
+function finishPractice(){
+
+  const total=PRACTICE[state.mission].length;
+  const score=Math.round((state.score/total)*100);
+
+  state.practiceData[state.mission]={
+    score,
+    correct:state.correct,
+    wrong:state.wrong,
+    attempts:state.attempts,
+    scaffold:state.scaffold,
+    date:new Date().toLocaleString("id-ID")
+  };
+
+  saveCurrent();
+
+  document.getElementById("practiceStars").textContent=
+    getStars(score);
+
+  document.getElementById("practiceResult").innerHTML=`
+    <p><b>${state.studentName}</b>, kamu telah menyelesaikan latihan!</p>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-number">${score}</div>
+        <div class="stat-label">Nilai</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">${state.correct}</div>
+        <div class="stat-label">Benar</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">${state.wrong}</div>
+        <div class="stat-label">Salah</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">${state.scaffold}</div>
+        <div class="stat-label">Bantuan</div>
+      </div>
+    </div>
+
+    <p>
+      Ingat: <b>salah bukan gagal</b>.
+      Salah membantu kita menemukan cara yang lebih baik.
+    </p>
+  `;
+
+  show("practiceResultScreen");
+}
+
+
+/* =========================================================
+   ASSESSMENT
+========================================================= */
+
+function startAssessment(){
+
+  state.mode="assessment";
+  state.index=0;
+  state.score=0;
+  state.correct=0;
+  state.wrong=0;
+  state.attempts=0;
+  state.scaffold=0;
+  state.answered=false;
+
+  if(state.mission===8){
+    startGrand();
+    return;
+  }
+
+  document.getElementById("assessmentTitle").textContent=
+    MISSIONS[state.mission-1].title;
+
+  show("assessmentScreen");
+  renderAssessment();
+}
+
+
+function renderAssessment(){
+
+  const bank=ASSESSMENT[state.mission];
+
+  if(state.index>=bank.length){
+    finishAssessment();
+    return;
+  }
+
+  const item=bank[state.index];
+
+  document.getElementById("assessmentCounter").textContent=
+    `${state.index+1} / ${bank.length}`;
+
+  document.getElementById("assessmentProgress").style.width=
+    ((state.index/bank.length)*100)+"%";
+
+  let html=`
+    <div class="question-number">
+      ASESMEN ${state.index+1}
+    </div>
+
+    <span class="level-badge ${item[3].toLowerCase()}">
+      ${item[3]}
+    </span>
+
+    <div class="question">
+      ${item[0]}
+    </div>
+
+    <div class="options">
+  `;
+
+  item[1].forEach((op,i)=>{
+    html+=`
+      <button class="option"
+        onclick="answerAssessment(${i})"
+        id="aopt${i}">
+        ${op}
+      </button>
+    `;
+  });
+
+  html+="</div>";
+
+  document.getElementById("assessmentQuestion").innerHTML=html;
+  document.getElementById("assessmentFeedback").innerHTML="";
+  state.answered=false;
+}
+
+
+function answerAssessment(choice){
+
+  if(state.answered)return;
+
+  const item=ASSESSMENT[state.mission][state.index];
+
+  state.attempts++;
+  state.answered=true;
+
+  const buttons=document.querySelectorAll("#assessmentQuestion .option");
+
+  buttons.forEach((b,i)=>{
+    if(i===item[2])b.classList.add("correct");
+  });
+
+  if(choice===item[2]){
+
+    state.correct++;
+
+    if(item[3]==="LOTS")state.score+=1;
+    if(item[3]==="MOTS")state.score+=2;
+    if(item[3]==="HOTS")state.score+=3;
+
+    document.getElementById("assessmentFeedback").innerHTML=
+      `<div class="feedback good">
+        🎉 Jawaban benar!<br>
+        ${item[5]}
+      </div>
+      <div class="actions">
+        <button class="btn btn-primary" onclick="nextAssessment()">
+          Lanjut ➡️
+        </button>
+      </div>`;
+
+  }else{
+
+    state.wrong++;
+
+    buttons[choice].classList.add("wrong");
+
+    document.getElementById("assessmentFeedback").innerHTML=
+      `<div class="feedback bad">
+        Jawaban belum tepat 😊<br>
+        Jawaban yang benar: <b>${item[1][item[2]]}</b><br>
+        ${item[5]}
+      </div>
+      <div class="actions">
+        <button class="btn btn-primary" onclick="nextAssessment()">
+          Lanjut ➡️
+        </button>
+      </div>`;
+  }
+}
+
+
+function nextAssessment(){
+  state.index++;
+  renderAssessment();
+}
+
+
+function finishAssessment(){
+
+  /*
+    3 LOTS x 1 = 3
+    4 MOTS x 2 = 8
+    3 HOTS x 3 = 9
+    TOTAL = 20
+  */
+
+  const score=Math.round((state.score/20)*100);
+
+  const levels={
+    lots:0,
+    mots:0,
+    hots:0
+  };
+
+  ASSESSMENT[state.mission].forEach((q,i)=>{
+    if(i<3)levels.lots++;
+    else if(i<7)levels.mots++;
+    else levels.hots++;
+  });
+
+  state.assessmentData[state.mission]={
+    score,
+    points:state.score,
+    correct:state.correct,
+    wrong:state.wrong,
+    lots:levels.lots,
+    mots:levels.mots,
+    hots:levels.hots,
+    date:new Date().toLocaleString("id-ID")
+  };
+
+  saveCurrent();
+
+  document.getElementById("assessmentStars").textContent=
+    getStars(score);
+
+  document.getElementById("assessmentScore").textContent=
+    score;
+
+  document.getElementById("assessmentDetail").innerHTML=`
+    <p>Nilai Asesmen: <b>${score}</b> / 100</p>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-number">${state.correct}</div>
+        <div class="stat-label">Benar</div>
+      </div>
+
+      <div class="stat">
+        <div class="stat-number">${state.wrong}</div>
+        <div class="stat-label">Belum tepat</div>
+      </div>
+
+      <div class="stat">
+        <div class="stat-number">3</div>
+        <div class="stat-label">LOTS</div>
+      </div>
+
+      <div class="stat">
+        <div class="stat-number">4</div>
+        <div class="stat-label">MOTS</div>
+      </div>
+
+      <div class="stat">
+        <div class="stat-number">3</div>
+        <div class="stat-label">HOTS</div>
+      </div>
+    </div>
+
+    <p>
+      Asesmen selesai. Kamu boleh melanjutkan ke misi berikutnya.
+    </p>
+  `;
+
+  show("assessmentResultScreen");
+}
+
+
+/* =========================================================
+   GRAND MISSION
+========================================================= */
+
+function startGrand(){
+
+  state.mode="grand";
+  state.index=0;
+  state.score=0;
+  state.correct=0;
+  state.wrong=0;
+  state.attempts=0;
+  state.answered=false;
+
+  document.getElementById("assessmentTitle").textContent=
+    "🏆 GRAND MISSION";
+
+  show("assessmentScreen");
+  renderGrand();
+}
+
+
+function renderGrand(){
+
+  const bank=ASSESSMENT[8];
+
+  if(state.index>=bank.length){
+    finishGrand();
+    return;
+  }
+
+  const item=bank[state.index];
+
+  document.getElementById("assessmentCounter").textContent=
+    `${state.index+1} / ${bank.length}`;
+
+  document.getElementById("assessmentProgress").style.width=
+    ((state.index/bank.length)*100)+"%";
+
+  let html=`
+    <div class="question-number">GRAND MISSION ${state.index+1}</div>
+
+    <span class="level-badge ${item[3].toLowerCase()}">
+      ${item[3]}
+    </span>
+
+    <div class="question">${item[0]}</div>
+
+    <div class="options">
+  `;
+
+  item[1].forEach((op,i)=>{
+    html+=`
+      <button class="option"
+        onclick="answerGrand(${i})">
+        ${op}
+      </button>
+    `;
+  });
+
+  html+="</div>";
+
+  document.getElementById("assessmentQuestion").innerHTML=html;
+  document.getElementById("assessmentFeedback").innerHTML="";
+}
+
+
+function answerGrand(choice){
+
+  if(state.answered)return;
+
+  const item=ASSESSMENT[8][state.index];
+
+  state.answered=true;
+
+  const buttons=document.querySelectorAll("#assessmentQuestion .option");
+
+  buttons.forEach((b,i)=>{
+    if(i===item[2])b.classList.add("correct");
+  });
+
+  if(choice===item[2]){
+    state.correct++;
+    state.score++;
+    buttons[choice].classList.add("correct");
+  }else{
+    state.wrong++;
+    buttons[choice].classList.add("wrong");
+  }
+
+  document.getElementById("assessmentFeedback").innerHTML=
+    `<div class="feedback ${
+      choice===item[2]?"good":"bad"
+    }">
+      ${
+        choice===item[2]
+        ?"🎉 Benar!"
+        :"😊 Belum tepat."
+      }
+      <br>${item[5]}
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-primary" onclick="nextGrand()">
+        Lanjut ➡️
+      </button>
+    </div>`;
+}
+
+
+function nextGrand(){
+  state.index++;
+  state.answered=false;
+  renderGrand();
+}
+
+
+function finishGrand(){
+
+  const score=Math.round((state.score/10)*100);
+
+  state.grandScore=score;
+
+  saveCurrent();
+
+  document.getElementById("grandScore").textContent=
+    score;
+
+  document.getElementById("grandMessage").innerHTML=
+    getGrandMessage(score);
+
+  show("grandResultScreen");
+}
+
+
+/* =========================================================
+   TEACHER
+========================================================= */
+
+function showTeacher(){
+
+  renderTeacher();
+  show("teacherScreen");
+}
+
+
+function getRecords(){
+
+  try{
+    return JSON.parse(
+      localStorage.getItem("mathAdventure1Records") || "[]"
+    );
+  }catch(e){
+    return [];
+  }
+}
+
+
+function saveCurrent(){
+
+  const records=getRecords();
+
+  const data={
+    name:state.studentName,
+    className:state.studentClass,
+    updated:new Date().toLocaleString("id-ID"),
+    missions:{...state.assessmentData},
+    practice:{...state.practiceData},
+    grand:state.grandScore
+  };
+
+  const index=records.findIndex(
+    r=>r.name===data.name &&
+       r.className===data.className
+  );
+
+  if(index>=0){
+    records[index]=data;
+  }else{
+    records.push(data);
+  }
+
+  localStorage.setItem(
+    "mathAdventure1Records",
+    JSON.stringify(records)
+  );
+}
+
+
+function renderTeacher(){
+
+  const records=getRecords();
+
+  if(!records.length){
+    document.getElementById("teacherTable").innerHTML=
+      `<div class="empty">
+        Belum ada data siswa.
+      </div>`;
+    return;
+  }
+
+  let html=`
+  <div class="table-wrap">
+  <table class="teacher-table">
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Nama</th>
+        <th>Kelas</th>
+        <th>Bilangan</th>
+        <th>Penjumlahan</th>
+        <th>Pengurangan</th>
+        <th>Pola</th>
+        <th>Pengukuran</th>
+        <th>Geometri</th>
+        <th>Data</th>
+        <th>Grand</th>
+        <th>Rata-rata</th>
+        <th>Update</th>
+      </tr>
+    </thead>
+    <tbody>
+  `;
+
+  records.forEach((r,i)=>{
+
+    const scores=[];
+
+    for(let m=1;m<=7;m++){
+      if(r.missions[m]){
+        scores.push(r.missions[m].score);
+      }
+    }
+
+    if(r.grand){
+      scores.push(r.grand);
+    }
+
+    const avg=scores.length
+      ? Math.round(
+          scores.reduce((a,b)=>a+b,0)/scores.length
+        )
+      : "-";
+
+    html+=`
+      <tr>
+        <td>${i+1}</td>
+        <td>${escapeHTML(r.name)}</td>
+        <td>${escapeHTML(r.className)}</td>
+        ${missionScore(r,1)}
+        ${missionScore(r,2)}
+        ${missionScore(r,3)}
+        ${missionScore(r,4)}
+        ${missionScore(r,5)}
+        ${missionScore(r,6)}
+        ${missionScore(r,7)}
+        <td>${r.grand||"-"}</td>
+        <td><b>${avg}</b></td>
+        <td>${r.updated||"-"}</td>
+      </tr>
+    `;
+  });
+
+  html+=`
+    </tbody>
+  </table>
+  </div>
+  `;
+
+  document.getElementById("teacherTable").innerHTML=html;
+}
+
+
+function missionScore(record,id){
+
+  if(!record.missions[id]){
+    return "<td>-</td>";
+  }
+
+  return `<td><b>${record.missions[id].score}</b></td>`;
+}
+
+
+/* =========================================================
+   CSV
+========================================================= */
+
+function downloadCSV(){
+
+  const records=getRecords();
+
+  if(!records.length){
+    alert("Belum ada data untuk diunduh.");
+    return;
+  }
+
+  const rows=[];
+
+  rows.push([
+    "Nama",
+    "Kelas",
+    "Bilangan",
+    "Penjumlahan",
+    "Pengurangan",
+    "Pola",
+    "Pengukuran",
+    "Geometri",
+    "Data",
+    "Grand Mission",
+    "Rata-rata",
+    "Update"
+  ]);
+
+  records.forEach(r=>{
+
+    const scores=[];
+
+    const vals=[];
+
+    for(let m=1;m<=7;m++){
+      const s=r.missions[m]?.score || "";
+      vals.push(s);
+
+      if(s!==""){
+        scores.push(Number(s));
+      }
+    }
+
+    const grand=r.grand||"";
+
+    if(grand!==""){
+      scores.push(Number(grand));
+    }
+
+    const avg=scores.length
+      ? Math.round(
+        scores.reduce((a,b)=>a+b,0)/scores.length
+      )
+      : "";
+
+    rows.push([
+      r.name,
+      r.className,
+      ...vals,
+      grand,
+      avg,
+      r.updated
+    ]);
+  });
+
+  const csv=rows.map(row=>
+    row.map(cell=>csvEscape(cell)).join(",")
+  ).join("\n");
+
+  const blob=new Blob(
+    ["\ufeff"+csv],
+    {type:"text/csv;charset=utf-8;"}
+  );
+
+  const url=URL.createObjectURL(blob);
+
+  const a=document.createElement("a");
+  a.href=url;
+  a.download=
+    "Rekap_MATH_ADVENTURE_1.csv";
+
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+
+  URL.revokeObjectURL(url);
+}
+
+
+function csvEscape(value){
+
+  const s=String(value??"");
+
+  if(
+    s.includes(",") ||
+    s.includes('"') ||
+    s.includes("\n")
+  ){
+    return '"'+s.replace(/"/g,'""')+'"';
+  }
+
+  return s;
+}
+
+
+/* =========================================================
+   HAPUS DATA
+========================================================= */
+
+function clearRecords(){
+
+  if(
+    confirm(
+      "Yakin ingin menghapus SEMUA data siswa dari browser ini?"
+    )
+  ){
+    localStorage.removeItem("mathAdventure1Records");
+    renderTeacher();
+  }
+}
+
+
+/* =========================================================
+   UTILITIES
+========================================================= */
+
+function getStars(score){
+
+  if(score>=90)return "⭐⭐⭐⭐⭐";
+  if(score>=80)return "⭐⭐⭐⭐";
+  if(score>=70)return "⭐⭐⭐";
+  if(score>=60)return "⭐⭐";
+  return "⭐";
+}
+
+
+function getGrandMessage(score){
+
+  if(score>=90){
+    return "Luar biasa! Kamu telah menyelesaikan Grand Mission dengan sangat baik! 🏆";
+  }
+
+  if(score>=70){
+    return "Hebat! Kamu sudah mampu menggunakan beberapa strategi matematika. 🌟";
+  }
+
+  if(score>=60){
+    return "Bagus! Terus berlatih dan jangan takut mencoba kembali. 💪";
+  }
+
+  return "Tetap semangat! Kesalahan adalah bagian dari belajar. Ayo coba lagi! 🚀";
+}
+
+
+function escapeHTML(text){
+
+  return String(text)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+}
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+  const saved=getRecords();
+
+  if(saved.length){
+    console.log(
+      "MATH ADVENTURE 1:",
+      saved.length,
+      "data siswa tersimpan."
+    );
+  }
+
+});
+
+</script>
+
+</body>
+</html>
